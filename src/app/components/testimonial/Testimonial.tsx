@@ -1,155 +1,83 @@
 "use client";
 
-import { useState } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  MoreVertical,
-  Play,
-  Volume2,
-  Settings,
-  Maximize,
-} from "lucide-react";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { MoreHorizontal } from "lucide-react";
 
-export default function Testimonial() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
+export default function Component() {
   const testimonials = [
     {
-      id: 1,
       title: "White label solution for business scaling.mp4",
-      thumbnail: "/placeholder.svg?height=400&width=300",
-      overlayText: "Hey I was struggling",
-      duration: "00:28",
+      overlayText: "clunky",
+      videoSrc:
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     },
     {
-      id: 2,
       title: "How Scale Startup Transformed My Coaching Business.mp4",
-      thumbnail: "/placeholder.svg?height=400&width=300",
       overlayText: "into reality",
-      duration: "00:44",
+      videoSrc:
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     },
     {
-      id: 3,
-      title: "Tired of Tech Chaos How I 4Xd My Coaching Revenue in 35 Days.mp4",
-      thumbnail: "/placeholder.svg?height=400&width=300",
-      overlayText: "Hey",
-      duration: "00:43",
+      title: "Tired of Tech Chaos How I 40d My Coaching Revenue in 35 Days.mp4",
+      overlayText: "are you struggling",
+      videoSrc:
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     },
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    );
-  };
-
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16">
-      <h2 className="text-4xl font-bold text-center mb-12">
-        What Our Clients Have to Say
-      </h2>
+    <div className="bg-amber-100 w-full">
+      <div className=" container w-full max-w-7xl mx-auto px-4 py-12">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+          What Our Clients Have to Say
+        </h2>
 
-      <div className="relative">
-        <div className="flex overflow-hidden">
-          <div
-            className="flex transition-transform duration-300 ease-in-out"
-            style={{
-              transform: `translateX(-${currentSlide * 100}%)`,
-              width: `${testimonials.length * 100}%`,
-            }}
-          >
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="w-full px-2 md:w-1/3 flex-shrink-0"
-              >
-                <div className="relative rounded-lg overflow-hidden border border-gray-200 shadow-md">
-                  {/* Video Title Bar */}
-                  <div className="absolute top-0 left-0 right-0 bg-black bg-opacity-70 text-white p-2 z-10 flex justify-between items-center">
-                    <span className="text-sm truncate max-w-[90%]">
-                      {testimonial.title}
-                    </span>
-                    <button className="p-1 rounded-full hover:bg-gray-700">
-                      <MoreVertical size={16} />
-                    </button>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <Card
+              key={index}
+              className="relative overflow-hidden bg-black rounded-lg"
+            >
+              {/* Video Header */}
+              <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
+                    <div className="w-full h-full rounded-full bg-gray-400"></div>
                   </div>
+                  <span className="text-white text-sm font-medium bg-black/50 px-2 py-1 rounded">
+                    {testimonial.title}
+                  </span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/20"
+                >
+                  <MoreHorizontal className="w-4 h-4" />
+                </Button>
+              </div>
 
-                  {/* Video Thumbnail */}
-                  <div className="relative aspect-[9/16] bg-gray-900">
-                    <Image
-                      src={testimonial.thumbnail || ""}
-                      width={30}
-                      height={40}
-                      alt="Video thumbnail"
-                      className="w-full h-full object-cover"
-                    />
+              {/* Video Content via iframe */}
+              <div className="relative aspect-[3/4] bg-gray-50">
+                <iframe
+                  src={testimonial.videoSrc}
+                  className="w-full h-full object-cover"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  title={testimonial.title}
+                ></iframe>
 
-                    {/* Overlay Text */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <h3 className="text-white text-4xl font-bold drop-shadow-lg">
-                        {testimonial.overlayText}
-                      </h3>
-                    </div>
-
-                    {/* Video Controls */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
-                      <div className="flex items-center gap-2">
-                        <button className="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full">
-                          <Play size={20} fill="white" />
-                        </button>
-
-                        <div className="flex-1 h-1 bg-gray-600 rounded-full overflow-hidden">
-                          <div className="h-full w-1/3 bg-white rounded-full"></div>
-                        </div>
-
-                        <span className="text-white text-xs">
-                          {testimonial.duration}
-                        </span>
-
-                        <button className="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full">
-                          <Volume2 size={16} />
-                        </button>
-
-                        <button className="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full">
-                          <Settings size={16} />
-                        </button>
-
-                        <button className="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full">
-                          <Maximize size={16} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                {/* Overlay Text */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <span className="text-white text-4xl font-bold drop-shadow-lg">
+                    {testimonial.overlayText}
+                  </span>
                 </div>
               </div>
-            ))}
-          </div>
+            </Card>
+          ))}
         </div>
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft size={24} />
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
-          aria-label="Next slide"
-        >
-          <ChevronRight size={24} />
-        </button>
       </div>
     </div>
   );

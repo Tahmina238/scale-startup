@@ -16,22 +16,22 @@ export default function Dominate() {
             {/* Main circular images */}
             <div className="relative">
               {/* Woman at laptop - bottom left */}
-              <div className="relative left-17 w-64 h-84 rounded-full border-4 border-orange-500 overflow-hidden">
+              <div className="relative left-37 w-60 h-90  rounded-full border-4 border-orange-500 overflow-hidden">
                 <Image
                   src="https://i.ibb.co/wF10ywYd/dominate1.webp"
                   alt="Woman working on laptop"
                   fill
-                  className="object-cover"
+                  className=""
                 />
               </div>
 
               {/* Team meeting - top right, overlapping */}
-              <div className="absolute left-2 top-46 w-27 h-44 rounded-full border-4 border-blue-500 overflow-hidden">
+              <div className="absolute left-20 top-46 w-40 h-60 rounded-full border-4 border-blue-500 overflow-hidden">
                 <Image
-                  src=" https://i.ibb.co/gMTRjhqN/dominate2.webp"
+                  src="https://i.ibb.co/gMTRjhqN/dominate2.webp"
                   alt="Team collaboration"
                   fill
-                  className="object-cover"
+                  className=""
                 />
               </div>
             </div>

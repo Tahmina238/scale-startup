@@ -6,6 +6,7 @@ import CoreSolutions from "./components/core/CoreSolutions";
 import Crisis from "./components/crisis/Crisis";
 import Dominate from "./components/dominate/Dominate";
 import Footer from "./components/footer/Footer";
+import Form from "./components/form/Form";
 import GreatProducts from "./components/greatProduct/GreatProducts";
 import Hero from "./components/hero/Hero";
 import HyperGrowth from "./components/hypreGrowth/HyperGrowth";
@@ -41,7 +42,7 @@ export default function Home() {
       <CodeCash />
       <Crisis />
       <Autopilot />
-      {/* <Form/> */}
+      <Form />
       <Subscribe />
       <Panic />
       <Footer />
